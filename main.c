@@ -1,29 +1,29 @@
-#define RCGCGPIO (*((unsigned int *)0x400FE608U))
+#define RCGCGPIO (*((unsigned int *)0x400FE608U)) //clock gating controll
 #define GPIO_BASE 0x40025000U
 #define GPIO_DIR  (*((unsigned int *)RCGCGPIO + 0x400U))
 #define GPIO_DEN  (*((unsigned int *)RCGCGPIO + 0x51CU))
 #define GPIO_DATA  (*((unsigned int *)RCGCGPIO + 0x3FCU))
 void delay()
 {
-  volatile int i;
+  volatile int i; //delay function
   for (i = 0; i < 1000000; i++); 
 }
 int main()
 {
-  RCGCGPIO = 0x20 ;
+  RCGCGPIO = 0x20 ;  //enable clovk for GPIO_F
   
-  GPIO_DIR = 0x0EU ;
+  GPIO_DIR = 0x0EU ; // set pins 1,2 , 3 as outputs 
    
-  GPIO_DEN = 0x0EU;
+  GPIO_DEN = 0x0EU; // Enable digital function for pins 1, 2, and 3
   while (1){
     
-  GPIO_DATA = 0x02U ; 
+  GPIO_DATA = 0x02U ; // red 
   delay();
 
-  GPIO_DATA = 0x08U ;
+  GPIO_DATA = 0x08U ; //green
   delay() ;
   
-  GPIO_DATA = 0x0cU ;
+  GPIO_DATA = 0x0cU ; //blue
   delay() ;
   
   };
