@@ -1,8 +1,8 @@
 #define RCGCGPIO (*((unsigned int *)0x400FE608U)) //clock gating controll
 #define GPIO_BASE 0x40025000U
-#define GPIO_DIR  (*((unsigned int *)RCGCGPIO + 0x400U))
-#define GPIO_DEN  (*((unsigned int *)RCGCGPIO + 0x51CU))
-#define GPIO_DATA  (*((unsigned int *)RCGCGPIO + 0x3FCU))
+#define GPIO_DIR  (*((unsigned int *)(GPIO_BASE + 0x400U)))
+#define GPIO_DEN  (*((unsigned int *)(GPIO_BASE + 0x51CU)))
+#define GPIO_DATA  (*((unsigned int *)(GPIO_BASE + 0x3FCU)))
 void delay()
 {
   volatile int i; //delay function
